@@ -1,0 +1,8 @@
+@media all and (max-width: 968px) {
+  .media_cart_table {
+    display: block;
+  }
+  .media_cart_submit {
+    display: block;
+  }
+}

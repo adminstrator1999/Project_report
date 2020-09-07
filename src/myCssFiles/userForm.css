@@ -1,0 +1,27 @@
+.userBox {
+  width: 880px;
+  margin-top: 35px;
+}
+.userInput {
+  margin: 10px 35px;
+}
+.userButton {
+  width: 150px;
+  float: right;
+  margin-right: 30px;
+}
+@media all and (max-width: 762px) {
+  .userBox {
+    width: 600px;
+  }
+}
+@media all and (max-width: 560px) {
+  .userBox {
+    max-width: 400px;
+  }
+}
+@media all and (max-width: 460px) {
+  .userBox {
+    max-width: 340px;
+  }
+}
