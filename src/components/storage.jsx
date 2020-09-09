@@ -21,17 +21,12 @@ class Storage extends Component {
       <React.Fragment>
         <div
           style={{
-            height: "30px",
             margin: "10px",
-            marginTop: "20px",
           }}
         >
           <h3>Ombordagi tovarlarning umumiy summasi: {total_price} so'm</h3>
         </div>
-        <div
-          className="table-responsive"
-          style={{ overflow: "scroll", maxHeight: "500px", marginTop: "30px" }}
-        >
+        <div className="table-responsive table_storage">
           <table className="table table-striped table-hover">
             <thead className="thead-dark">
               <tr>

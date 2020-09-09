@@ -83,23 +83,25 @@ class BuyItemDatatable extends Component {
   render() {
     return (
       <React.Fragment>
-        <BuyItemModal
-          handleClose={this.hideModal}
-          isOpen={this.state.isOpen}
-          product_name={this.state.product_name}
-          product_id={this.state.product_id}
-          buying={this.state.buying}
-        />
-        <MDBDataTableV5
-          hover
-          entriesOptions={[5, 20, 25]}
-          entries={5}
-          pagesAmount={4}
-          data={this.state.datatable}
-          fullPagination
-          searchTop
-          searchBottom={false}
-        />
+        <div style={{ padding: "30px" }}>
+          <BuyItemModal
+            handleClose={this.hideModal}
+            isOpen={this.state.isOpen}
+            product_name={this.state.product_name}
+            product_id={this.state.product_id}
+            buying={this.state.buying}
+          />
+          <MDBDataTableV5
+            hover
+            entriesOptions={[5, 20, 25]}
+            entries={5}
+            pagesAmount={4}
+            data={this.state.datatable}
+            fullPagination
+            searchTop
+            searchBottom={false}
+          />
+        </div>
       </React.Fragment>
     );
   }

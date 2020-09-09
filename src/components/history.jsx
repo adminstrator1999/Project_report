@@ -57,7 +57,7 @@ class History extends Component {
           className="responsive-table"
           style={{
             margin: "auto",
-            maxWidth: "800px",
+            maxWidth: "1000px",
             marginTop: "30px",
             maxHeight: "500px",
             overflow: "scroll",

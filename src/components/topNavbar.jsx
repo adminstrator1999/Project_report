@@ -67,13 +67,17 @@ class Navbar extends Component {
         <input type="checkbox" id="btn" />
         <ul>
           <li>
-            <Link to="/">Bosh sahifa</Link>
+            <Link to="/">
+              <i className="fas fa-home m-2"></i>Bosh sahifa
+            </Link>
           </li>
           <li>
             <label htmlFor="btn-1" className="show">
-              Yaratish+
+              Yaratish<i className="fas fa-plus m-2"></i>
             </label>
-            <a href="#">Yaratish</a>
+            <a href="#">
+              <i className="fas fa-plus m-2"></i>Yaratish
+            </a>
             <input type="checkbox" id="btn-1" />
             <ul>
               <li>
@@ -93,9 +97,11 @@ class Navbar extends Component {
 
           <li>
             <label htmlFor="btn-2" className="show">
-              Savdo+
+              Savdo<i className="fas fa-plus m-2"></i>
             </label>
-            <a href="#">Savdo</a>
+            <a href="#">
+              <i className="fas fa-plus m-2"></i>Savdo
+            </a>
             <input type="checkbox" id="btn-2" />
             <ul>
               <li>
@@ -108,13 +114,19 @@ class Navbar extends Component {
           </li>
 
           <li>
-            <Link to="/history/">Tarix</Link>
+            <Link to="/history/">
+              <i className="fas fa-history m-2"></i>Tarix
+            </Link>
           </li>
           <li>
-            <Link to="/report/">Xisobot</Link>
+            <Link to="/report/">
+              <i className="fas fa-book m-2"></i>Xisobot
+            </Link>
           </li>
           <li>
-            <Link to="/storage/">Ombor</Link>
+            <Link to="/storage/">
+              <i className="fas fa-database m-2"></i>Ombor
+            </Link>
           </li>
           <li>
             <label htmlFor="btn-3" className="show">

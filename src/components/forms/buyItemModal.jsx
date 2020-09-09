@@ -30,6 +30,7 @@ class BuyItemModal extends Component {
     };
     this.context.setOrderItems([...this.context.orderItems, obj]);
     this.setState({ price: "", quantity: "" });
+    this.props.isOpen = false;
     console.log(obj);
   };
 
