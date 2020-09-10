@@ -18,6 +18,10 @@ class Registration extends Component {
   }
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    console.log(this.state);
+  };
+  handleCompany = (event) => {
+    this.setState({ company: event.target.value });
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -37,6 +41,7 @@ class Registration extends Component {
       });
   };
   render() {
+    let company_list = this.state.company_list;
     return (
       <React.Fragment>
         <div className="form__style userBox">
@@ -79,7 +84,20 @@ class Registration extends Component {
                 onChange={this.handleChange}
                 value={this.state.phone}
               />
-              <input
+              <select
+                value={this.state.company}
+                name="company"
+                onChange={this.handleCompany}
+                className="txtb col-md-5 userInput"
+              >
+                {company_list.map((company) => (
+                  <option key={company.id} value={company.id}>
+                    {company.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* <input
                 required
                 name="company"
                 className="txtb col-md-5 userInput"
@@ -87,7 +105,7 @@ class Registration extends Component {
                 placeholder="Company name"
                 onChange={this.handleChange}
                 value={this.state.company}
-              />
+              /> */}
             </div>
             <div className="row">
               <input
