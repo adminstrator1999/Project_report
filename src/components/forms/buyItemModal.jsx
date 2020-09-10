@@ -30,8 +30,6 @@ class BuyItemModal extends Component {
     };
     this.context.setOrderItems([...this.context.orderItems, obj]);
     this.setState({ price: "", quantity: "" });
-    this.props.isOpen = false;
-    console.log(obj);
   };
 
   render() {
@@ -59,6 +57,7 @@ class BuyItemModal extends Component {
           <input
             className="col-md-12 form-control"
             type="number"
+            min="0"
             name="quantity"
             value={this.state.quantity}
             onChange={this.handleChange}
@@ -69,6 +68,7 @@ class BuyItemModal extends Component {
           <input
             className="col-md-12 form-control"
             type="number"
+            min="0"
             name="price"
             value={this.state.price}
             onChange={this.handleChange}

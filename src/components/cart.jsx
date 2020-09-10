@@ -18,7 +18,7 @@ class Cart extends Component {
     let deadline = this.state.deadline;
     let payed_portion = this.state.payed_portion;
     if (payed_portion === "") {
-      payed_portion = this.Total_price;
+      payed_portion = this.total_price;
     }
     let obj = {
       orderItems: orderItems,
@@ -32,6 +32,7 @@ class Cart extends Component {
         if (response.status == 201) {
           this.props.history.push("/");
           this.context.setOrderItems([]);
+          localStorage.removeItem("orderItems");
           this.setState({ client: "", payed_portion: "", deadline: "" });
         }
       })
@@ -41,14 +42,14 @@ class Cart extends Component {
         }
       });
   };
-  Total_price = this.context.orderItems.reduce((initialVal, currentVal) => {
+  total_price = this.context.orderItems.reduce((initialVal, currentVal) => {
     return initialVal + currentVal.price * currentVal.quantity;
   }, 0);
   render() {
     let orderItems = this.context.orderItems;
     let storage_error = this.state.storage_error;
     let items;
-    if (!this.context.itemCount) {
+    if (!JSON.parse(localStorage.getItem("orderItems"))) {
       items = <h1 className="cart_text">Bo'sh</h1>;
     }
     return (
@@ -111,6 +112,7 @@ class Cart extends Component {
                 style={{ margin: "10px 0" }}
                 className="col-md-12 form-control"
                 type="number"
+                min="0"
                 name="payed_portion"
                 value={this.state.payed_portion}
                 placeholder={this.Total_price}
@@ -128,7 +130,7 @@ class Cart extends Component {
                 onChange={this.handleChange}
               />
               <h4 style={{ padding: "10px" }}>
-                Total price: {this.Total_price} so'm
+                Total price: {this.total_price} so'm
               </h4>
               <button
                 type="submit"

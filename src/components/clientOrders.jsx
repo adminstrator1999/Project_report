@@ -104,6 +104,7 @@ class ClientOrders extends Component {
             <input
               className="col-md-12 form-control"
               type="number"
+              min="0"
               name="paid_portion"
               value={this.state.paid_portion}
               onChange={this.handleChange}

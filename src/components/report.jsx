@@ -78,6 +78,7 @@ class Report extends Component {
                   style={{ margin: "10px 0" }}
                   className="col-md-12 form-control"
                   type="number"
+                  min="1"
                   name="date"
                   value={this.state.date}
                   onChange={this.handleChange}

@@ -17,8 +17,12 @@ export class CartProvider extends Component {
     this.setState({ orderItems: orderItems, itemCount: orderItems.length });
   };
   state = {
-    orderItems: [],
-    itemCount: "",
+    orderItems: localStorage.getItem("orderItems")
+      ? JSON.parse(localStorage.getItem("orderItems"))
+      : [],
+    itemCount: localStorage.getItem("orderItems")
+      ? JSON.parse(localStorage.getItem("orderItems")).length
+      : 0,
     is_superuser: JSON.parse(localStorage.getItem("is_superuser")),
     is_logged_in: JSON.parse(localStorage.getItem("is_logged_in")),
     setOrderItems: this.setOrderItems,

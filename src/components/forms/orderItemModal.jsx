@@ -30,6 +30,10 @@ class OrderItemModal extends Component {
       buying: false,
     };
     this.context.setOrderItems([...this.context.orderItems, obj]);
+    localStorage.setItem(
+      "orderItems",
+      JSON.stringify([...this.context.orderItems, obj])
+    );
     this.setState({ price: "", quantity: "" });
   };
 
@@ -58,6 +62,7 @@ class OrderItemModal extends Component {
           <input
             className="col-md-12 form-control"
             type="number"
+            min="0"
             name="quantity"
             value={this.state.quantity}
             onChange={this.handleChange}
@@ -68,6 +73,7 @@ class OrderItemModal extends Component {
           <input
             className="col-md-12 form-control"
             type="number"
+            min="0"
             name="price"
             value={this.state.price}
             onChange={this.handleChange}

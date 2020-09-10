@@ -23,7 +23,6 @@ class Navbar extends Component {
   };
   render() {
     let button;
-
     if (this.context.is_logged_in) {
       if (this.context.is_superuser) {
         button = (
