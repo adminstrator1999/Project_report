@@ -3,17 +3,24 @@ import { Link } from "react-router-dom";
 import CategoryModal from "./forms/categoryModal";
 import { CartContext } from "./contexts/cartContext";
 import axios from "axios";
-import { UserContext } from "./contexts/userContext";
 
 class Navbar extends Component {
   static contextType = CartContext;
   state = {
     isOpen: false,
+    display: "none",
   };
   handleClick = () => {
     axios.post("user/logout/").then(localStorage.clear());
     this.context.setIs_superuser(false);
     this.context.setIs_logged_in(false);
+    if (window.innerWidth > 968) {
+      this.setState({ display: "block" });
+    } else if (this.state.display === "block") {
+      this.setState({
+        display: "none",
+      });
+    }
   };
   showModal = () => {
     this.setState({ isOpen: true });
@@ -21,8 +28,36 @@ class Navbar extends Component {
   hideModal = () => {
     this.setState({ isOpen: false });
   };
+  handleNavClose = () => {
+    if (window.innerWidth > 968) {
+      this.setState({ display: "block" });
+    } else if (this.state.display === "block") {
+      this.setState({
+        display: "none",
+      });
+    }
+  };
+  handleNavOpen = () => {
+    if (this.state.display === "none") {
+      this.setState({ display: "block" });
+    } else {
+      this.setState({ display: "none" });
+    }
+  };
+  componentDidMount() {
+    this.handleNavResponsive();
+    console.log(this.style);
+  }
+  handleNavResponsive = () => {
+    if (window.innerWidth < 968) {
+      this.setState({ display: this.state.display });
+    } else {
+      this.setState({ display: "block" });
+    }
+  };
   render() {
     let button;
+    let style = this.state.display;
     if (this.context.is_logged_in) {
       if (this.context.is_superuser) {
         button = (
@@ -61,12 +96,13 @@ class Navbar extends Component {
       <nav>
         <div className="logo">Bahromjon</div>
         <label htmlFor="btn" className="icon">
-          <span className="fa fa-bars"></span>
+          <span className="fa fa-bars" onClick={this.handleNavOpen}></span>
         </label>
         <input type="checkbox" id="btn" />
-        <ul>
+
+        <ul style={{ display: style }}>
           <li>
-            <Link to="/">
+            <Link to="/" onClick={this.handleNavClose}>
               <i className="fas fa-home m-2"></i>Bosh sahifa
             </Link>
           </li>
@@ -80,7 +116,9 @@ class Navbar extends Component {
             <input type="checkbox" id="btn-1" />
             <ul>
               <li>
-                <Link to="/product/">Mahsulot</Link>
+                <Link to="/product/" onClick={this.handleNavClose}>
+                  Mahsulot
+                </Link>
               </li>
               <li>
                 <CategoryModal
@@ -104,26 +142,30 @@ class Navbar extends Component {
             <input type="checkbox" id="btn-2" />
             <ul>
               <li>
-                <Link to="/order/list/">Sotish </Link>
+                <Link to="/order/list/" onClick={this.handleNavClose}>
+                  Sotish{" "}
+                </Link>
               </li>
               <li>
-                <Link to="/buy/item/list/">Sotib olish</Link>
+                <Link to="/buy/item/list/" onClick={this.handleNavClose}>
+                  Sotib olish
+                </Link>
               </li>
             </ul>
           </li>
 
           <li>
-            <Link to="/history/">
+            <Link to="/history/" onClick={this.handleNavClose}>
               <i className="fas fa-history m-2"></i>Tarix
             </Link>
           </li>
           <li>
-            <Link to="/report/">
+            <Link to="/report/" onClick={this.handleNavClose}>
               <i className="fas fa-book m-2"></i>Xisobot
             </Link>
           </li>
           <li>
-            <Link to="/storage/">
+            <Link to="/storage/" onClick={this.handleNavClose}>
               <i className="fas fa-database m-2"></i>Ombor
             </Link>
           </li>
@@ -138,7 +180,7 @@ class Navbar extends Component {
             {button}
           </li>
           <li>
-            <Link to="/order/cart/">
+            <Link to="/order/cart/" onClick={this.handleNavClose}>
               <i className="fas fa-shopping-cart"></i>
               <span className="badge badge-pill badge-secondary">
                 {this.context.itemCount}

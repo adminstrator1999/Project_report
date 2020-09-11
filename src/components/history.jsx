@@ -1,29 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import { HistoryContext } from "./contexts/historyContext";
-import ClientOrders from "./clientOrders";
+import { Link } from "react-router-dom";
 class History extends Component {
   state = { clients: [], client_orders: [] };
-  // static contextType = HistoryContext;
-  handleSearch = () => {
+  handleSearch = (event) => {
     this.setState();
   };
-  // handleClick = (client_id) => {
-  //   this.props.history.push(`/history/${client_id}/`);
-  //   // let obj = { client_id: client_id };
-  //   // axios
-  //   //   .post("http://127.0.0.1:8000/report/history/", obj)
-  //   //   .then((response) => {
-  //   //     this.setState({ client_orders: response.data });
-  //   //   });
-  // };
   componentDidMount() {
     axios
       .get("report/history/")
       .then((response) => {
         this.setState({ clients: response.data });
-        // this.context.setClients(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +18,6 @@ class History extends Component {
   }
   render() {
     let clients = this.state.clients;
-    // let clients = this.context.clients;
     return (
       <React.Fragment>
         <div
@@ -45,7 +31,6 @@ class History extends Component {
             style={{
               height: "35px",
               maxWidth: "85%",
-              //   margin: "auto",
             }}
             placeholder="Search"
           />
@@ -67,7 +52,7 @@ class History extends Component {
             <thead className="thead-dark">
               <tr style={{ borderRadius: "10px" }}>
                 <th scope="col">#</th>
-                <th scope="col">Client name</th>
+                <th scope="col">Kliyent ismi</th>
                 <th scope="col">Savdo turi</th>
                 <th scope="col">Nasiya miqdori</th>
               </tr>

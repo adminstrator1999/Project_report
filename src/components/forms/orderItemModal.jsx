@@ -1,6 +1,5 @@
-import React, { Component, createContext } from "react";
+import React, { Component } from "react";
 import Modal from "react-modal";
-import axios from "axios";
 import { CartContext } from "../contexts/cartContext";
 
 class OrderItemModal extends Component {
@@ -16,8 +15,6 @@ class OrderItemModal extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    // const context = this.context;
-    let itemCount = this.state.itemCount;
     let order_price = this.state.price;
     let order_quantity = this.state.quantity;
     let order_product_id = this.props.product_id;

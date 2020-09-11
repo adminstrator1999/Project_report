@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Particles from "react-tsparticles";
 import Footer from "./footer";
 
 class Index extends Component {

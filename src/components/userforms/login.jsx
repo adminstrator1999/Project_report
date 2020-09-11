@@ -12,7 +12,7 @@ class Login extends Component {
     axios
       .post("user/login/", this.state)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           this.context.setIs_superuser(JSON.parse(response.data.is_superuser));
           this.context.setIs_logged_in(JSON.parse(response.data.is_logged_in));
           localStorage.setItem("token", response.data.token);
@@ -22,7 +22,7 @@ class Login extends Component {
         }
       })
       .catch((error) => {
-        if (error.response.status == 400) {
+        if (error.response.status === 400) {
           let key = Object.keys(error.response.data)[0];
           this.setState({ errors: error.response.data[key] });
         }

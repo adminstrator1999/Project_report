@@ -69,7 +69,7 @@ class ProductForm extends Component {
     return (
       <div className="form__style" style={{ width: "300px" }}>
         <form onSubmit={this.handleSubmit}>
-          <h1>Product</h1>
+          <h1>Maxsulot</h1>
           <input
             required
             name="name"

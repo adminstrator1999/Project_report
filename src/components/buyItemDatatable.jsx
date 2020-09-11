@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBDataTableV5, MDBLink, MDBBtn } from "mdbreact";
+import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import BuyItemModal from "./forms/buyItemModal";
 import axios from "axios";
 class BuyItemDatatable extends Component {
@@ -7,28 +7,28 @@ class BuyItemDatatable extends Component {
     datatable: {
       columns: [
         {
-          label: "Product name",
+          label: "Maxsulot nomi",
           field: "product_name",
           width: 400,
           attributes: {
             "aria-controls": "DataTable",
-            "aria-label": "Product name",
+            "aria-label": "Maxsulot nomi",
           },
         },
         {
-          label: "Rest",
+          label: "Miqdori",
           field: "rest",
           width: 400,
           sort: "disabled",
         },
         {
-          label: "Price",
+          label: "Narxi",
           field: "last_price",
           width: 400,
           sort: "disabled",
         },
         {
-          label: "Buy",
+          label: "Sotib olish",
           field: "buy",
           width: 400,
           sort: "disabled",
@@ -68,7 +68,7 @@ class BuyItemDatatable extends Component {
                   className="btn btn-primary sm"
                   onClick={() => this.showModal(product)}
                 >
-                  buy
+                  Sotib olish
                 </MDBBtn>
               ),
             };

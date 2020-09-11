@@ -38,11 +38,10 @@ class CategoryModal extends Component {
           },
         }}
       >
-        <h2 style={{ textAlign: "center" }}>Category</h2>
+        <h2 style={{ textAlign: "center" }}>Kategoriya</h2>
         <form onSubmit={this.handleSubmit}>
           <label className="col-md-4 col-form-label col-form-label-lg">
-            {" "}
-            Name:{" "}
+            Nomi:
           </label>
           <input
             className="col-md-12 form-control"
@@ -65,7 +64,7 @@ class CategoryModal extends Component {
             style={{ float: "right" }}
             onClick={this.props.handleClose}
           >
-            Close
+            Yopish
           </button>
         </div>
       </Modal>

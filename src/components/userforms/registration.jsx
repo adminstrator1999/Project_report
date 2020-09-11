@@ -28,13 +28,13 @@ class Registration extends Component {
     axios
       .post("user/register/", this.state)
       .then((response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
           this.props.history.push("/");
           this.setState({});
         }
       })
       .catch((error) => {
-        if (error.response.status == 400) {
+        if (error.response.status === 400) {
           let key = Object.keys(error.response.data)[0];
           this.setState({ errors: error.response.data[key] });
         }

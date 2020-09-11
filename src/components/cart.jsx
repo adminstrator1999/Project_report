@@ -7,9 +7,37 @@ class Cart extends Component {
     client: "",
     payed_portion: "",
     deadline: "",
+    total_price: this.context.orderItems.reduce((initialVal, currentVal) => {
+      return initialVal + currentVal.price * currentVal.quantity;
+    }, 0),
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+  handleDelete = (product_id) => {
+    let products = JSON.parse(localStorage.getItem("orderItems"));
+    let updated_products = products.filter(function (product) {
+      return product.product_id !== product_id;
+    });
+    localStorage.setItem("orderItems", JSON.stringify(updated_products));
+    this.context.setOrderItems(updated_products);
+    this.setState({
+      total_price: updated_products.reduce((initialVal, currentVal) => {
+        return initialVal + currentVal.price * currentVal.quantity;
+      }, 0),
+    });
+  };
+  handleQuantity = (product_id, event) => {
+    let products = JSON.parse(localStorage.getItem("orderItems"));
+    let index = products.findIndex((x) => x.product_id == product_id);
+    products[index]["quantity"] = event.target.value;
+    localStorage.setItem("orderItems", JSON.stringify(products));
+    this.context.setOrderItems(products);
+    this.setState({
+      total_price: products.reduce((initialVal, currentVal) => {
+        return initialVal + currentVal.price * currentVal.quantity;
+      }, 0),
+    });
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +57,7 @@ class Cart extends Component {
     axios
       .post("order/completed-order/", obj)
       .then((response) => {
-        if (response.status == 201) {
+        if (response.status === 201) {
           this.props.history.push("/");
           this.context.setOrderItems([]);
           localStorage.removeItem("orderItems");
@@ -37,14 +65,11 @@ class Cart extends Component {
         }
       })
       .catch((error) => {
-        if (error.response.status == 400) {
+        if (error.response.status === 400) {
           this.setState({ storage_error: error.response.data });
         }
       });
   };
-  total_price = this.context.orderItems.reduce((initialVal, currentVal) => {
-    return initialVal + currentVal.price * currentVal.quantity;
-  }, 0);
   render() {
     let orderItems = this.context.orderItems;
     let storage_error = this.state.storage_error;
@@ -75,6 +100,7 @@ class Cart extends Component {
                   <th scope="col">Narxi</th>
                   <th scope="col">Miqdori</th>
                   <th scope="col">Umumiy narxi</th>
+                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,8 +109,32 @@ class Cart extends Component {
                     <th scope="row">{orderItems.indexOf(orderItem) + 1}</th>
                     <td>{orderItem.product_name}</td>
                     <td>{orderItem.price} so'm</td>
-                    <td>{orderItem.quantity}</td>
+                    <td>
+                      <input
+                        type="number"
+                        min="0"
+                        style={{
+                          height: "30px",
+                          maxWidth: "70px",
+                          border: "1px solid black",
+                        }}
+                        className="form-control"
+                        defaultValue={orderItem.quantity}
+                        name="update"
+                        onChange={(event) =>
+                          this.handleQuantity(orderItem.product_id, event)
+                        }
+                      />
+                    </td>
                     <td>{orderItem.price * orderItem.quantity}</td>
+                    <td>
+                      <button
+                        onClick={() => this.handleDelete(orderItem.product_id)}
+                        className="btn btn-danger sm"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -130,7 +180,7 @@ class Cart extends Component {
                 onChange={this.handleChange}
               />
               <h4 style={{ padding: "10px" }}>
-                Total price: {this.total_price} so'm
+                Total price: {this.state.total_price} so'm
               </h4>
               <button
                 type="submit"

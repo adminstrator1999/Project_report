@@ -1,7 +1,5 @@
-import React, { Component, createContext } from "react";
+import React, { Component } from "react";
 import Modal from "react-modal";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import axios from "axios";
 import { CartContext } from "../contexts/cartContext";
 
 class BuyItemModal extends Component {
@@ -29,6 +27,10 @@ class BuyItemModal extends Component {
       buying: buying,
     };
     this.context.setOrderItems([...this.context.orderItems, obj]);
+    localStorage.setItem(
+      "orderItems",
+      JSON.stringify([...this.context.orderItems, obj])
+    );
     this.setState({ price: "", quantity: "" });
   };
 
@@ -52,7 +54,7 @@ class BuyItemModal extends Component {
         <h2 style={{ textAlign: "center" }}>{this.props.product_name}</h2>
         <form onSubmit={this.handleSubmit}>
           <label className="col-md-4 col-form-label col-form-label-lg">
-            Quantity:
+            Miqdori:
           </label>
           <input
             className="col-md-12 form-control"
@@ -63,7 +65,7 @@ class BuyItemModal extends Component {
             onChange={this.handleChange}
           />
           <label className="col-md-4 col-form-label col-form-label-lg">
-            Price:
+            Narxi:
           </label>
           <input
             className="col-md-12 form-control"
@@ -87,7 +89,7 @@ class BuyItemModal extends Component {
             style={{ float: "right" }}
             onClick={this.props.handleClose}
           >
-            Close
+            Yopish
           </button>
         </div>
       </Modal>
