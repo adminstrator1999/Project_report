@@ -40,7 +40,7 @@ class ClientOrders extends Component {
     let client_orders = this.state.client_orders;
     return (
       <React.Fragment>
-        <div className="responsive-table">
+        <div className="responsive-table" style={{ overflow: "scroll" }}>
           <table className="table table-striped table-hover">
             <thead className="thead-dark">
               <tr>

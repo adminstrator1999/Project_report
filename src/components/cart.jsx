@@ -100,7 +100,7 @@ class Cart extends Component {
                   <th scope="col">Narxi</th>
                   <th scope="col">Miqdori</th>
                   <th scope="col">Umumiy narxi</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col">O'chirish</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,7 +132,7 @@ class Cart extends Component {
                         onClick={() => this.handleDelete(orderItem.product_id)}
                         className="btn btn-danger sm"
                       >
-                        Delete
+                        O'chirish
                       </button>
                     </td>
                   </tr>

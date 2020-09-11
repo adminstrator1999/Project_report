@@ -82,7 +82,7 @@ class OrderItemDatatable extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ padding: "30px" }}>
+        <div className="datatable_padding">
           <OrderItemModal
             handleClose={this.hideModal}
             isOpen={this.state.isOpen}

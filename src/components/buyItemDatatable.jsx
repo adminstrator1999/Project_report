@@ -83,7 +83,7 @@ class BuyItemDatatable extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ padding: "30px" }}>
+        <div className="datatable_padding">
           <BuyItemModal
             handleClose={this.hideModal}
             isOpen={this.state.isOpen}

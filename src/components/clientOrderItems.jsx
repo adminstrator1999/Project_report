@@ -14,11 +14,9 @@ class ClientOrderItems extends Component {
     return (
       <div
         className="responsive-table"
-        // style={{
-        //   margin: "auto",
-        //   maxWidth: "800px",
-        //   marginTop: "30px",
-        // }}
+        style={{
+          overflow: "scroll",
+        }}
       >
         <table className="table table-striped table-hover">
           <thead className="thead-dark">
